@@ -13,10 +13,10 @@
 
 .colorBoton {
     color:white;
-    background-color: #85bb65;
+    background-color: rgb(0, 60, 128);
 }
 
 .colorBoton:hover {
-    background-color: green;
+    background-color: rgb(0, 60, 128);
     color: white;
 }
