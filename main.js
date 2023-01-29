@@ -1,18 +1,3 @@
-/***** TU ALMACEN ONLINE.COM - CARRITO DE COMPRAS ******/
-
-//¿Qué funcionalidad debe tener un carrito de compras? 
-
-//1) Mostrar productos en el HTML de forma dinámica. 
-//2) Agregar productos al carrito. 
-//3) Evitar la carga de productos repetidos en el carrito. 
-//4) Mostrar el carrito en el HTML de forma dinámica. 
-//5) Eliminar productos del carrito. 
-//6) Calcular el total de la compra. 
-//7) Vaciar el carrito. 
-//8) Guardar el carrito en el LocalStorage. 
-
-/////////////////////////////////////////////
-
 class Producto {
     constructor(id, nombre, talle, precio, img) {
         this.id = id;
@@ -50,6 +35,8 @@ if(localStorage.getItem("carrito")) {
 
 const contenedorProductos = document.getElementById("contenedorProductos");
 
+
+
 // Creamos una función para mostrar los productos: 
 
 const mostrarProductos = () => {
@@ -72,6 +59,28 @@ const mostrarProductos = () => {
         const boton = document.getElementById(`boton${producto.id}`);
         boton.addEventListener("click", () => {
             agregarAlCarrito(producto.id)
+            Swal.fire({
+                title: `agregaste ${producto.nombre} al carrito`,
+                position: 'top',
+                showClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeInDown
+                    animate__faster
+                  `
+                },
+                hideClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeOutUp
+                    animate__faster
+                  `
+                },
+                grow: 'row',
+                showConfirmButton: false,
+                showCloseButton: true
+              })
+              
         })
     })
 }
@@ -94,6 +103,11 @@ const agregarAlCarrito = (id) => {
 
 mostrarProductos();
 
+
+
+
+
+
 //MOSTRAR EL CARRITO DE COMPRAS: 
 
 const contenedorCarrito = document.getElementById("contenedorCarrito");
@@ -104,7 +118,7 @@ verCarrito.addEventListener("click", () => {
     mostrarCarrito();
 });
 
-//Función para mostrar el Carrillooo: 
+//Función para mostrar el Carrito: 
 
 const mostrarCarrito = () => {
     contenedorCarrito.innerHTML="";
@@ -176,6 +190,15 @@ const calcularTotal = () => {
     })
     total.innerHTML = `Total: $${totalCompra}`;
 }
+
+let key = "3afd571ab278116bc5f2a4db8d2bdf8d";
+
+fetch("https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid="+key)
+  .then((response) => response.json())
+  .then(data=> console.log(data));
+
+
+
 
 //¿Donde podemos llamar a la función calcularTotal()?
 //mostrarCarrito
