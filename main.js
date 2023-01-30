@@ -193,13 +193,16 @@ const calcularTotal = () => {
 
 let key = "3afd571ab278116bc5f2a4db8d2bdf8d";
 
-fetch("https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid="+key)
+fetch("https://api.openweathermap.org/data/2.5/weather?q=Buenos Aires&lang=es&units=metric&appid="+key)
   .then((response) => response.json())
-  .then(data=> console.log(data));
+  .then(data=>{
+            
 
+            const temperatura = document.getElementById("temperatura");
 
+            temperatura.innerHTML= `
+            <p>Temp: ${data.main.temp}C°</p>
+            <p>Clima actual: ${data.weather[0].description}</p>
+            `
+});
 
-
-//¿Donde podemos llamar a la función calcularTotal()?
-//mostrarCarrito
-//agregarAlCarrito
